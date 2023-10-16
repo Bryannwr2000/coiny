@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ArticleIcon from "@mui/icons-material/Article";
 import HomeIcon from "@mui/icons-material/Home";
@@ -33,7 +32,7 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (e) => {
     setAnchorElNav(null);
   };
 
@@ -45,12 +44,19 @@ function ResponsiveAppBar() {
     <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to="/">
-            <div className="logo-container">
+          <div className="logo-container">
+            <Link to="/">
               <img src={logo} alt="logo" className="logo" />
-            </div>
-          </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            </Link>
+          </div>
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              justifyContent: "flex-end",
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -79,74 +85,85 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem
-                onClick={handleCloseNavMenu}
-                component={() => <Link to="/" />}
-              >
-                <Typography textAlign="center">
-                  {" "}
-                  <HomeIcon /> Home
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center"> Cryptocurrencies</Typography>
-              </MenuItem>
-              <MenuItem
-                onClick={handleCloseNavMenu}
-                linkButton
-                containerElement={<Link to="/news" />}
-              >
-                <Typography textAlign="center">News</Typography>
-              </MenuItem>
+              <Link to="/" className="link">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Home</Typography>
+                </MenuItem>
+              </Link>
+              <Link to="/cryptocurrencies" className="link">
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center"> Cryptocurrencies</Typography>
+                </MenuItem>
+              </Link>
+              <Link to="/news" className="link">
+                <MenuItem
+                  onClick={handleCloseNavMenu}
+                  linkButton
+                  containerElement={<Link to="/news" />}
+                >
+                  <Typography textAlign="center">News</Typography>
+                </MenuItem>
+              </Link>
             </Menu>
           </Box>
 
           {/* Full View */}
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Box
             sx={{
               flexGrow: 1,
+              width: "100%",
               display: { xs: "none", md: "flex" },
               justifyContent: "center",
               alignItems: "center",
+              position: "absolute",
             }}
           >
-            <Button
-              component={Link}
-              to="/"
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "flex" }}
-              startIcon={<HomeIcon />}
+            <Box
+              sx={{
+                width: "30%",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                position: "relative",
+              }}
             >
-              <Typography
-                textTransform="capitalize"
-                fontFamily="var(--font-base)"
+              <Button
+                component={Link}
+                to="/"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "flex" }}
+                startIcon={<HomeIcon />}
               >
-                {" "}
-                Home{" "}
-              </Typography>
-            </Button>
-            <Button
-              component={Link}
-              to="/cryptocurrencies"
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "flex" }}
-              startIcon={<MonetizationOnIcon />}
-            >
-              <Typography textTransform="capitalize">
-                {" "}
-                Cryptocurrencies{" "}
-              </Typography>
-            </Button>
-            <Button
-              component={Link}
-              to="/news"
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "flex" }}
-              startIcon={<ArticleIcon />}
-            >
-              <Typography textTransform="capitalize"> News </Typography>
-            </Button>
+                <Typography
+                  textTransform="capitalize"
+                  fontFamily="var(--font-base)"
+                >
+                  {" "}
+                  Home{" "}
+                </Typography>
+              </Button>
+              <Button
+                component={Link}
+                to="/cryptocurrencies"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "flex" }}
+                startIcon={<MonetizationOnIcon />}
+              >
+                <Typography textTransform="capitalize">
+                  {" "}
+                  Cryptocurrencies{" "}
+                </Typography>
+              </Button>
+              <Button
+                component={Link}
+                to="/news"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "flex" }}
+                startIcon={<ArticleIcon />}
+              >
+                <Typography textTransform="capitalize"> News </Typography>
+              </Button>
+            </Box>
           </Box>
 
           {/* //profile section */}

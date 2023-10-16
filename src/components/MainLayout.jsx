@@ -18,7 +18,7 @@ const MainLayout = () => {
     <>
       <Alert
         severity="warning"
-        style={{ position: "fixed", bottom: 0, width: "100%" }}
+        style={{ position: "fixed", bottom: 0, width: "100%", zIndex: "10" }}
       >
         UI Revamping in Progress: Explore Our New Look Soon.
       </Alert>
