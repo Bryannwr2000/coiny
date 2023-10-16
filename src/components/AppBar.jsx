@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 import {
   AppBar,
@@ -16,10 +17,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AdbIcon from "@mui/icons-material/Adb";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ArticleIcon from "@mui/icons-material/Article";
-
-import { Link } from "react-router-dom";
-
 import HomeIcon from "@mui/icons-material/Home";
+import logo from "../images/coinfy-logo.png";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -46,24 +45,11 @@ function ResponsiveAppBar() {
     <AppBar position="static" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component={Link}
-            to="/"
-            sx={{
-              mr: 2,
-              mt: -1,
-              display: { xs: "none", md: "flex" },
-              color: "inherit",
-              letterSpacing: ".1rem",
-              fontSize: "2.5rem",
-              fontFamily: "Roboto Condensed",
-              fontWeight: "400",
-            }}
-          >
-            coinfy
-          </Typography>
+          <Link to="/">
+            <div className="logo-container">
+              <img src={logo} alt="logo" className="logo" />
+            </div>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -117,7 +103,14 @@ function ResponsiveAppBar() {
 
           {/* Full View */}
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Button
               component={Link}
               to="/"
